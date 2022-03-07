@@ -1,0 +1,261 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[$fontsize$, a4paper]{article}
+
+% LAYOUT
+%--------------------------------
+% Margins
+\usepackage{geometry}
+\geometry{$geometry$}
+
+% Do not indent paragraphs
+\setlength\parindent{0in}
+
+$if(pagenumbers)$
+  % Removing page numbers if pagenumbers variable is false
+$else$
+  \pagenumbering{gobble}
+$endif$
+
+% LANGUAGE
+%--------------------------------
+% Set the main language
+$if(lang)$
+\usepackage{polyglossia}
+\setmainlanguage{$lang$}
+$endif$
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{fontspec} 
+\usepackage{xunicode}
+\usepackage{xltxtra}
+% converts LaTeX specials (quotes, dashes etc.) to Unicode
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont [Ligatures={Common}, Numbers={OldStyle}, BoldFont={$boldfont$}, ItalicFont={$italicfont$}]{$mainfont$}
+
+% custom font for bullets/enumerators
+\newfontfamily{\Meslo}{MesloLGS-NF}
+[Path = ./src/, Extension = .ttf, UprightFont = *-Regular]
+
+% Cool ampersand
+\newcommand{\amper}{{\fontspec[Scale=.95]{$mainfont$}\selectfont\itshape\&}}
+
+
+% HEADINGS
+%--------------------------------
+\usepackage{sectsty} 
+\usepackage[normalem]{ulem} 
+\sectionfont{\rmfamily\mdseries} 
+\subsectionfont{\rmfamily\mdseries\scshape\large} 
+\subsubsectionfont{\rmfamily\bfseries\upshape\normalsize} 
+
+% PDF SETUP
+%--------------------------------
+\usepackage{hyperref}
+\hypersetup
+{
+  pdfauthor={$name$},
+  pdfsubject={$name$'s CV},
+  pdftitle={$name$'s CV},
+  hidelinks
+  }
+
+%Don't break words
+%\hyphenation{}
+
+% ragged right
+$if(raggedright)$
+  \usepackage[document]{ragged2e}
+$endif$
+
+% DOCUMENT
+%--------------------------------
+\begin{document}
+{\LARGE $name$}\\[.1cm]
+{$dob$}
+
+\vspace{$subpadder$}
+
+\noindent
+
+% Minipage to make 3 columns of correct size without complicated for loop structures
+\begin{minipage}[t]{$colwidth$}
+  $for(address)$
+    $address$\\
+  $endfor$
+\end{minipage}%
+\begin{minipage}[t]{$colwidth$}
+  $phone$\\
+  $email$\\
+\end{minipage}%
+$if(myurls)$
+  \begin{minipage}[t]{$colwidth$}
+    $for(myurls)$
+      {$myurls.url$}\\
+    $endfor$
+  \end{minipage}%
+$endif$
+
+
+$if(intro)$
+  \vspace{$subpadder$}
+  \vspace{$subpadder$}
+  \vspace{$subpadder$}
+  $intro$
+$endif$
+
+
+$if(skills)$
+  \section*{$skills.title$}
+  \begin{itemize}
+    $for(skills.list)$
+      \item $skills.list$
+    $endfor$
+  \end{itemize}
+$endif$
+
+\vfill
+
+$if(experience)$
+  \section*{$experience-heading$}
+  $for(experience)$
+    % @{} removes outer padding, l: left aligned, c: centered, p: parbox
+    \begin{tabular}{ @{} p{$colwidth$} @{} p{$coltwowidth$} }
+      $if(experience.years)$
+        $experience.years$
+      $else$
+        &
+      $endif$
+      $if(experience.employer)$
+        & \textbf{$experience.employer$} \\
+      $else$
+        \\
+      $endif$
+      $if(experience.city)$
+        $experience.city$ &
+      $else$
+        &
+      $endif$
+      \emph{$experience.job$}\\
+      & $experience.description$\\[$subpadder$]
+    \end{tabular}
+  $endfor$
+$endif$
+
+$if(education)$
+  \section*{$education-heading$}
+  \begin{tabular}{ @{} p{$colwidth$} @{} p{$coltwowidth$} }
+  $for(education)$
+    {$education.year$} & 
+    \textbf{$education.subject$}$if(education.degree)$, $education.degree$$endif$\\
+    $if(education.city)$
+      {$education.city$} &
+    $else$ 
+      &
+    $endif$
+    \emph{$education.institute$}
+    $if(education.description)$
+      \\ & $education.description$
+    $endif$\\[$subpadder$]
+  $endfor$
+  \end{tabular}
+$endif$
+
+
+$if(subsections)$
+  $if(subsections.enabled)$
+    $for(subsections.sections)$
+      $if(subsections.sections.enabled)$
+        \section*{$subsections.sections.heading$}
+        \begin{tabular}{ @{} p{$colwidth$} @{} p{$coltwowidth$} }
+          $for(subsections.sections.items)$
+            $if(subsections.sections.items.year)$
+              $subsections.sections.items.year$
+            $endif$ & 
+            $if(subsections.sections.items.employer)$
+              \textbf{$subsections.sections.items.employer$} 
+            $endif$\\
+            $if(subsections.sections.items.city)$
+              {$subsections.sections.items.city$} 
+            $endif$ & 
+            $if(subsections.sections.items.job)$
+              \emph{$subsections.sections.items.job$}
+            $endif$\\
+            $if(subsections.sections.items.description)$
+              & $subsections.sections.items.description$ \\[$subpadder$]
+            $endif$
+          $endfor$
+        \end{tabular}
+      $endif$
+    $endfor$
+  $endif$
+$endif$
+
+
+$if(languages)$
+  \section*{$languages-heading$}
+  \begin{tabular}{ @{} p{$colwidth$} @{} l }
+  $for(languages)$
+    \textbf{$languages.language$} & $languages.proficiency$ \\[.1cm]
+  $endfor$
+  \end{tabular}
+$endif$
+
+$if(planguages)$
+  \section*{$planguages-heading$}
+  \begin{tabular}{ @{} p{$colwidth$} @{} l }
+  $for(planguages)$
+    \textbf{$planguages.language$} & {\Meslo{$planguages.proficiency$}} \\[.1cm]
+  $endfor$
+  \end{tabular}
+$endif$
+
+
+$if(edv)$
+  \section*{$edv-heading$}
+  \begin{tabular}{ @{} p{$colwidth$} @{} l }
+    & $edv$
+  \end{tabular}
+$endif$
+
+
+$if(software)$
+  \section*{$software-heading$}
+    \begin{tabular}{ @{} p{$colwidth$} @{} p{$coltwowidth$} }
+      $for(software)$
+        \emph{$software.subsec$} &
+        $software.description$ \\[.2cm]
+      $endfor$
+    \end{tabular}
+$endif$
+
+
+$if(references)$
+\section*{$references-heading$}
+  \begin{tabular}{ @{} p{$colwidth$} @{} p{$coltwowidth$} }
+    $for(references)$
+      \textbf{$references.name$} & $references.tlf$ \\
+      $references.employer$ & 
+      $if(references.email)$ 
+        $references.email$\\
+      $else$
+        \\
+      $endif$
+      {$references.position$}\\[$subpadder$]
+    $endfor$
+  \end{tabular}
+$endif$
+
+$if(signature)$
+  \vfill
+  $city$, 
+  \today \\[.1cm]
+  \IfFileExists{src/signature.pdf} {
+    \includegraphics[height=1.5\baselineskip]{src/signature.pdf} \par
+  }{\vspace{5.5\baselineskip}
+  }
+$endif$
+
+\end{document}

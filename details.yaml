@@ -1,0 +1,130 @@
+---
+# Personal details
+name: Your Name
+dob: 22. 2. 2022
+address:
+  - Road 1
+  - 90216 City
+city: Cityville
+phone: '123-456-7890'
+email: mail@provider.com
+
+myurls:
+  - url: https://lipsum.com
+  - url: https://github.com
+
+# -----------------------------------------------
+# Sections
+# -----------------------------------------------
+
+# intro: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+#skills:
+# - Aesthetics, Ethics, Metaphysics, Nihilism
+# - Psychology, Ontology, Poetry, Value theory
+
+experience-heading: Experience
+experience:
+  - years: 2020--2022
+    employer: Some employer
+    job: Some job title
+    city: Cityville
+    description: 'If you use a character like : you need to wrap your string in quotes.'
+  - years: 2019-2020
+    employer: Another employer
+    job: Title
+    city: Sapville
+    description: 'You can use LaTeX formatting like this: \textit{Italic text.}'
+
+education-heading: Education
+education:
+  - year: 2014--2016
+    subject: Degree title
+    degree: Degree
+    institute: Institution
+    city: City of the city
+  - year: 2010--2013
+    subject: More education?
+    degree: Degree if appliccable
+    institute: Institution
+    city: City
+    description: You can describe it if you want to.
+
+# Definable sections
+subsections:
+  enabled: true
+  sections:
+    - heading: Internships
+      enabled: true
+      items:
+        - year: 2011--2013
+          employer: Bussinessco
+          job: Businessman
+          city: Businessville
+          description: Ran the photo copier
+        - year: 2009--2010
+          employer: Bussinessco
+          job: Businessman
+          city: Businessville
+          description: Ran the photo copier
+
+languages-heading: Languages
+languages:
+  - language: English
+    proficiency: Mother tounge
+  - language: Chinese
+    proficiency: Not fluent
+
+planguages-heading: Programming languages
+planguages:
+  - language: Javascript
+    proficiency: ● ● ● ● ○
+  - language: COBOL
+    proficiency: ● ● ● ○ ○
+  - language: Python
+    proficiency: ● ● ◖ ○ ○
+  - language: PHP
+    proficiency: ● ● ○ ○ ○
+
+# Pure string section meant description of software exoerience
+# edv-heading: EDV
+#edv: ""
+
+# table section meant for listing software experience
+software-heading: Software
+software:
+  - subsec: Office
+    description: Good knowlege of MS Office, as well as the Mac and Linux alternatives.
+  - subsec: Visual software
+    description: MSPaint expert
+
+references-heading: References
+references:
+  - name: Colleague 1
+    position: Employee
+    employer: WorkCo
+    tlf: 21312312
+  - name: Colleague 2
+    position: Boss
+    employer: BusinessCo
+    tlf: 21312321
+    email: email@provider.com
+
+# Settings
+# langcodes: https://github.com/reutenauer/polyglossia/issues/226
+lang: en-GB
+# put a file containing a signature as a .pdf in /src and make this true to sign the document
+signature: true
+mainfont: Helvetica
+italicfont: Helvetica-Oblique
+boldfont: Helvetica-Bold
+fontsize: 10pt
+# A4 width: 21 cm
+geometry: a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm
+colwidth: 6cm
+coltwowidth: 11cm
+subpadder: .3cm
+raggedright: true
+pagenumbers: false
+---
+
