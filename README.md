@@ -1,5 +1,7 @@
 ## Latex cv generator
 
+Fork of https://github.com/mrzool/cv-boilerplate
+
 Depends on [Pandoc](https://pandoc.org) and LaTeX, including a couple not included in the minimal build of Latex packages.
 
 To install the dependencies I recommend these commands (assuming MacOS)
